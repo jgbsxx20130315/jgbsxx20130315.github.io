@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="编程, 学习" />
+   
+  <meta name="description" content="梦是什么，一个整天幻想着东西；追梦是什么，朝着梦跑，梦只是想着，追梦却是行动。" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     逐梦人的博客
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="逐梦人的博客" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/jgbsxx20130315"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover2.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">逐梦人的博客</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+<div id="main">
+  <section class="outer">
+  <article class="articles">
+    
+    
+    
+    
+    <article id="post-2020-3-12-Netease-cloud-playlist-download" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/12/2020-3-12-Netease-cloud-playlist-download/"
+    >网易云歌单下载——Python程序制作</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/12/2020-3-12-Netease-cloud-playlist-download/" class="article-date">
+  <time datetime="2020-03-12T02:00:04.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>今天和大家分享的是一个用Python实现的网易云歌单下载小工具。</p>
+<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><p>在编写这个程序时，使用的环境是：</p>
+<ul>
+<li>Windows  10 Professional</li>
+<li>Python 3.7.5</li>
+<li>wxPython 4.0.7.post2</li>
+<li>requests 2.22.0</li>
+<li>lxml 4.5.0</li>
+<li>beutifulsoup4 4.8.2</li>
+<li>IDE: PyCharm2017</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">    @author: chen</span></span><br><span class="line"><span class="string">    @date: 2020/2/22</span></span><br><span class="line"><span class="string">    @description: 这是一个以wxpython作GUI，</span></span><br><span class="line"><span class="string">    @requirements: wxPython==4.0.7.post2</span></span><br><span class="line"><span class="string">                   requests==2.22.0</span></span><br><span class="line"><span class="string">                   lxml==4.5.0</span></span><br><span class="line"><span class="string">                   beautifulsoup4==4.8.2</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 导入第三方库</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> wx</span><br><span class="line"><span class="keyword">import</span> wx.xrc</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入自定义设置</span></span><br><span class="line"><span class="keyword">import</span> settings</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义主窗口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MusicDownloadFrame</span><span class="params">(wx.Frame)</span>:</span></span><br><span class="line">    musicData = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        wx.Frame.__init__(self, <span class="literal">None</span>, id=wx.ID_ANY, title=settings.title,pos=wx.DefaultPosition, size=settings.size, style=settings.style)</span><br><span class="line"></span><br><span class="line">        self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)</span><br><span class="line">        self.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOW))</span><br><span class="line"></span><br><span class="line">        bSizer4 = wx.BoxSizer(wx.VERTICAL)</span><br><span class="line">        bSizer5 = wx.BoxSizer(wx.HORIZONTAL)</span><br><span class="line">        self.m_staticText3 = wx.StaticText(self, wx.ID_ANY, settings.url_tip,wx.DefaultPosition, wx.DefaultSize, <span class="number">0</span>)</span><br><span class="line">        self.m_staticText3.Wrap(<span class="number">-1</span>)</span><br><span class="line">        self.m_staticText3.SetFont(wx.Font(<span class="number">13</span>, wx.FONTFAMILY_DECORATIVE, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, <span class="literal">False</span>, wx.EmptyString))</span><br><span class="line">        bSizer5.Add(self.m_staticText3, <span class="number">0</span>, wx.ALL, <span class="number">5</span>)</span><br><span class="line">        self.url_text = wx.TextCtrl(self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size(<span class="number">300</span>, <span class="number">-1</span>), <span class="number">0</span>)</span><br><span class="line">        bSizer5.Add(self.url_text, <span class="number">0</span>, wx.ALL, <span class="number">5</span>)</span><br><span class="line">        self.down_button = wx.Button(self, wx.ID_ANY, settings.down_tip, wx.DefaultPosition, wx.DefaultSize, <span class="number">0</span>)</span><br><span class="line">        bSizer5.Add(self.down_button, <span class="number">0</span>, wx.ALL, <span class="number">5</span>)</span><br><span class="line">        bSizer4.Add(bSizer5, <span class="number">1</span>, wx.EXPAND, <span class="number">4</span>)</span><br><span class="line">        self.output_text = wx.TextCtrl(self, wx.ID_ANY, settings.status_init, wx.DefaultPosition, wx.Size(<span class="number">600</span>, <span class="number">320</span>), wx.TE_MULTILINE)</span><br><span class="line">        bSizer4.Add(self.output_text, <span class="number">0</span>, wx.ALL, <span class="number">5</span>)</span><br><span class="line">        self.SetSizer(bSizer4)</span><br><span class="line">        self.Layout()</span><br><span class="line">        self.Centre(wx.BOTH)</span><br><span class="line">        <span class="comment"># 连接时的事件</span></span><br><span class="line">        self.down_button.Bind(wx.EVT_BUTTON, self.main_button_click)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(settings.down_path):</span><br><span class="line">            os.mkdir(settings.down_path)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__del__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">main_button_click</span><span class="params">(self, event)</span>:</span></span><br><span class="line">        self.musicData = []</span><br><span class="line">        <span class="keyword">if</span> self.getMusicData(self.url_text.GetValue().replace(<span class="string">"#/"</span>,<span class="string">""</span>)) == <span class="literal">None</span>:</span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">            sys.exit(requests.exceptions.ConnectionError)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.musicData = self.getMusicData(self.url_text.GetValue().replace(<span class="string">"#/"</span>,<span class="string">""</span>))</span><br><span class="line"></span><br><span class="line">        print(self.musicData)</span><br><span class="line">        <span class="keyword">if</span> len(self.musicData) &gt; <span class="number">1</span>:</span><br><span class="line">            self.output_text.AppendText(<span class="string">u"歌单/排行榜中的歌曲已经获取成功，即将开始下载...\n"</span>)</span><br><span class="line">            self.get(self.musicData)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.output_text.AppendText(<span class="string">'这个歌单好像不存在呢，是不是网络有问题，或者链接写错了，没有下载到音乐。/(ㄒoㄒ)/~~'</span>)</span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">            sys.exit(<span class="string">"音乐下载失败"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self, values)</span>:</span></span><br><span class="line">        print(len(values))     <span class="comment"># Todo 这里打印歌单/排行榜条目时有点乱</span></span><br><span class="line">        downNum = <span class="number">0</span></span><br><span class="line">        rstr = <span class="string">r"[\/\\\:\*\?\"\&lt;\&gt;\|]"</span>  <span class="comment"># 作为文件名时不可以使用的字符</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> values:       <span class="comment"># Todo 这有个神仙变量</span></span><br><span class="line">            x[<span class="string">'name'</span>] = re.sub(rstr, <span class="string">"_"</span>, x[<span class="string">'name'</span>])        <span class="comment"># 将作为文件名时不可以使用的字符替换成下划线</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(settings.down_path + x[<span class="string">'name'</span>] + <span class="string">'.mp3'</span>):</span><br><span class="line">                self.output_text.AppendText(<span class="string">'***** '</span> + x[<span class="string">'name'</span>] + <span class="string">'.mp3 ***** 下载中...\n'</span>)</span><br><span class="line">                url = <span class="string">'http://music.163.com/song/media/outer/url?id='</span> + x[<span class="string">'id'</span>] + <span class="string">'.mp3'</span></span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    self.saveFile(url, settings.down_path + x[<span class="string">'name'</span>] + <span class="string">'.mp3'</span>)</span><br><span class="line">                    downNum = downNum + <span class="number">1</span></span><br><span class="line">                <span class="keyword">except</span>:</span><br><span class="line">                    x = x - <span class="number">1</span></span><br><span class="line">                    self.output_text.AppendText(<span class="string">u'下载失败~\n'</span>)</span><br><span class="line">        <span class="keyword">if</span> downNum != <span class="number">0</span>:</span><br><span class="line">            self.output_text.AppendText(<span class="string">'下载完成'</span> + str(downNum) + <span class="string">'个音乐，快去沉浸到音乐当中去吧！'</span>)</span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">            sys.exit(<span class="string">"音乐下载完成"</span>)</span><br><span class="line">        <span class="keyword">elif</span> downNum == <span class="number">0</span>:</span><br><span class="line">            self.output_text.AppendText(<span class="string">'这个歌单好像不存在呢，是不是网络有问题，或者链接写错了，没有下载到音乐。/(ㄒoㄒ)/~~'</span>)</span><br><span class="line">            sys.exit(<span class="string">"音乐下载失败"</span>)</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMusicData</span><span class="params">(self, url)</span>:</span></span><br><span class="line">        headers = &#123;<span class="string">'User-Agent'</span>: settings.user_agent&#125;</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            webData = requests.get(url, headers=headers).text</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            self.output_text.AppendText(<span class="string">'服务器好像跑到火星去了呢，连接中断,程序即将退出，/(ㄒoㄒ)/~~'</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        soup = BeautifulSoup(webData, <span class="string">'lxml'</span>)</span><br><span class="line">        find_list = soup.find(<span class="string">'ul'</span>, class_=<span class="string">"f-hide"</span>).find_all(<span class="string">'a'</span>)</span><br><span class="line"></span><br><span class="line">        tempArr = []</span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> find_list:</span><br><span class="line">            music_id = a[<span class="string">'href'</span>].replace(<span class="string">'/song?id='</span>, <span class="string">''</span>)</span><br><span class="line">            music_name = a.text</span><br><span class="line">            tempArr.append(&#123;<span class="string">'id'</span>: music_id, <span class="string">'name'</span>: music_name&#125;)</span><br><span class="line">        <span class="keyword">return</span> tempArr</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">saveFile</span><span class="params">(self, url, path)</span>:</span></span><br><span class="line">        headers = settings.down_headers</span><br><span class="line">        response = requests.get(url, headers=headers)</span><br><span class="line">        <span class="keyword">with</span> open(path, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(response.content)</span><br><span class="line">            f.flush()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    app = wx.App(<span class="literal">False</span>)</span><br><span class="line">    frame = MusicDownloadFrame()</span><br><span class="line">    frame.Show(<span class="literal">True</span>)</span><br><span class="line">    <span class="comment"># 启动程序</span></span><br><span class="line">    app.MainLoop()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-2020-3-12-Hello" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/03/12/2020-3-12-Hello/"
+    >Hello</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/12/2020-3-12-Hello/" class="article-date">
+  <time datetime="2020-03-11T23:34:17.767Z" itemprop="datePublished">2020-03-12</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>大家好！这里是追梦人的博客，会分享一些编程，学习，以及一些好的文章喜欢我就收藏吧。<br>！！！！！！！！！！！！！！<br>！！！重要的事情说三遍！！！<br>！本博客内所有文章仅供学习！<br>！本博客内所有文章仅供学习！<br>！本博客内所有文章仅供学习！<br>！如需转载请联系<a href="mailto://jgbsxx20130315@163.com">jgbsx20130315@163.com</a>!<br>!并注明出处               !<br>！切勿用于商业或者恶意用途！<br>！！！！！！！！！！！！！！</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+  </article>
+  
+
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        逐梦人
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="逐梦人的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['梦于勇于追梦的人而言不再会是梦，而命对于信命的人而言就是命。', '梦是什么，一个整天幻想着东西；追梦是什么，朝着梦跑，梦只是想着，追梦却是行动。', '每天给自己一个希望，你将拥有好的心情，你的心态往往就是你真正的主人。'],
+      startDelay: 20,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/js/ayer.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
